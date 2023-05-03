@@ -1,12 +1,18 @@
-import { applyMiddleware, compose } from 'redux';
+import reportsReducer from './reports';
+import { applyMiddleware, compose, combineReducers, createStore } from 'redux';
 const logger = require("redux-logger").default;
-const composeEnhancers = 
+const rootReducer = combineReducers({
+    reports : reportsReducer
+});
+
+const composeEnhancers =
    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancer = composeEnhancers(applyMiddleware(logger));
 
-export const configureStore = () => {
-  return;
+const configureStore = (preloadedState) => {
+  return createStore(rootReducer, preloadedState, enhancer);
 };
+
 
 export default configureStore;
