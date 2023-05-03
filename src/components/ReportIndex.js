@@ -1,8 +1,10 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ReportIndexItem from './ReportIndexItem';
 
 const ReportIndex = () => {
-  const reports = []; // populate from Redux store
+  const reports = useSelector(state => Object.keys(state.reports).map(key => state.reports[key])); // populate from Redux store
+  // console.log(reports);
   const resetData = (e) => {
     e.preventDefault();
   };
@@ -12,7 +14,7 @@ const ReportIndex = () => {
       <ul>
         {
           reports.map(report => (
-            <ReportIndexItem 
+            <ReportIndexItem
               report={report}
               key={report.id}
             />
