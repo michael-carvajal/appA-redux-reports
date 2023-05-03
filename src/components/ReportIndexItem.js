@@ -6,7 +6,7 @@ const ReportIndexItem = ({ report }) => {
   const dispatch = useDispatch()
 
   const deleteReport = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     dispatch(removeReport(report.id))
   };
 
