@@ -5,7 +5,11 @@ const ReportShow = () => {
   // console.log(reportId);
   const reports = useSelector(state => Object.keys(state.reports).map(key => state.reports[key])); // populate from Redux store
   const report = reports.find(report => {
-    return report.id === parseInt(reportId)
+    if (typeof report.id === "number") {
+      return report.id === parseInt(reportId)
+    }
+    return report.id === reportId
+
   })
   return (
     <section>
